@@ -6,6 +6,7 @@ import { Memo } from "./Memo";
 import { Debounce } from "./DebounceThrottle/Debounce";
 import { Back } from "./../src/BackButton/Back";
 import InfiniteScroll from "./InfiniteScroll/InfiniteScroll";
+import { Eventbubbling } from "./EventBubbling/Eventbubbling";
 
 function App() {
     return (
@@ -15,7 +16,8 @@ function App() {
             <Memo></Memo> */}
             {/* <Debounce/> */}
             {/* <Back/> */}
-            <InfiniteScroll />
+            {/* <InfiniteScroll /> */}
+            <Eventbubbling />
         </div>
     );
 }
