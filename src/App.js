@@ -7,8 +7,11 @@ import { Debounce } from "./DebounceThrottle/Debounce";
 import { Back } from "./../src/BackButton/Back";
 import InfiniteScroll from "./InfiniteScroll/InfiniteScroll";
 import { Eventbubbling } from "./EventBubbling/Eventbubbling";
+import { HOC } from "./HigherOrderComponent/HOC";
+import OriginalComponent from "./HigherOrderComponent/OriginalComponent";
 
 function App() {
+    const Abc = HOC(OriginalComponent);
     return (
         <div className="App">
             {/* <BasicCounter></BasicCounter>
@@ -17,7 +20,8 @@ function App() {
             {/* <Debounce/> */}
             {/* <Back/> */}
             {/* <InfiniteScroll /> */}
-            <Eventbubbling />
+            {/* <Eventbubbling /> */}
+            <Abc value={5}></Abc>
         </div>
     );
 }
