@@ -1,0 +1,61 @@
+Webkit -vendor prefix which help a particular browser to give some non-standardised property —webkit-magic
+Web pack- it is a bundling tool which is used to bundle the project. When you make a project you make too many files and import it here and there . To make it work and to write less non-development work, we use web pack which do things for us It convert multiple entry points to a correctly ordered and concatenated output.
+Between entry and exit point there are multiple loaders like babel which convert future gen javascript into current gen javascript.es6 to es5 which is known as transpiring and four thing involved is plugin which minifies unused javascript and css for optimisations
+
+Craco is used to change web pack configuration without ejecting all the dependencies. For gzip we have to first understand the concept of how things work in internet.
+
+Browser makes an api call to frontend server which is server located at domain name
+
+To add dynamic props and attribute to children we can use React.cloneElement(buttonElement,{disabled:false}) It copies the child and add property to it.
+To iterate over the react children we use React.children.map(children,(child, index)=>{
+Return child;})
+
+HOCfunction App() {
+    const Abc = HOC(OriginalComponent);
+    return (
+        <div className="App">
+            <Abc value={5}></Abc>
+        </div>
+    );
+}export const HOC = (WrappedComponent) => {
+    const [variable, setVariable] = useState(5);
+    return (originalProps) => {
+        return <WrappedComponent injectedProps={variable} {...originalProps} />;
+    };
+};
+
+const OriginalComponent = (props) => {
+    console.log(props);
+    return <div>OriginalComponent</div>;
+};
+The statement import React from “react” tells that it is expecting jsx and props will get Autofilled in the jsx with desired properties
+
+Flow
+We have a HOC wrapper component which adds a property to some other component.
+The other component must also be generic to use the property that we are adding to it that implies no issue in typescript
+Original props is filled by value={5}
+When we do Abc=HOC(OriginalComponent)
+HOC(OriginalComponent) is returning originalComponents with injected props.
+And when we are doing <Abc value={5}>
+We are passing props to original component.
+As a result we are getting original component as it is with injected props
+
+const Component = (props) => {
+  // This is wrong. Never do this this leads to deletion of state of children as a re-render will always give new component from scratch.
+  const EnhancedComponent = HOC(WrappedComponent);
+  return <EnhancedComponent />;
+};
+
+// This is the correct way
+const EnhancedComponent = HOC(WrappedComponent);
+const Component = (props) => {
+  return <EnhancedComponent />;
+};
+
+
+We have a form state for each input box is independent.
+We need all the states at parent for form submission.
+ We  also need error handling- there are two type of error handling
+Internal when input box is clicked and external when using for submit button.
+HandleError function should also be at top parent so that same function can be used inside the input box for checking on change and also outside for checking disabled button state.
+All these low level function and design are satisfied by formic and yup.
