@@ -11,19 +11,19 @@ import { HOC } from "./HigherOrderComponent/HOC";
 import OriginalComponent from "./HigherOrderComponent/OriginalComponent";
 
 function App() {
-    const Abc = HOC(OriginalComponent);
-    return (
-        <div className="App">
-            {/* <BasicCounter></BasicCounter>
+  const Abc = HOC(OriginalComponent);
+  return (
+    <div className="App">
+      {/* <BasicCounter></BasicCounter>
             <Todo1Creater></Todo1Creater>
             <Memo></Memo> */}
-            {/* <Debounce/> */}
-            {/* <Back/> */}
-            {/* <InfiniteScroll /> */}
-            {/* <Eventbubbling /> */}
-            <Abc value={5}></Abc>
-        </div>
-    );
+      <Debounce />
+      {/* <Back/> */}
+      {/* <InfiniteScroll /> */}
+      {/* <Eventbubbling /> */}
+      <Abc value={5}></Abc>
+    </div>
+  );
 }
 
 export default App;
