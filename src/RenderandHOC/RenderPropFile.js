@@ -71,3 +71,9 @@ function App() {
 }
 
 export default App;
+//Note so basically render prop is used inside child component and provides a function to parent component
+//so that by using that function (render) it can render anything inside child
+//so the use of child is to provide a functionality and call render method and render content
+//as the way as parent want.
+//We can dynamically render any jsx inside child function using render prop
+//functionality of parent is to provide jsx inside child.

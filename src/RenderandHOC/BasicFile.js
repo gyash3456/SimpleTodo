@@ -64,3 +64,8 @@ function App() {
 }
 
 export default App;
+//The basic difference between render prop and HOC is we don't change base rendering content and add
+// a functionality to base component by providing new prop
+//The render prop is used to dynamically inject jsx to an already existing functionality.
+// but we can use any of them to achieve the same thing. These are just two way of achieving a
+//new functionality.

@@ -87,3 +87,7 @@ function App() {
 }
 
 export default App;
+//the function of hOC is to take a functionality and add it to base component without modifying base
+//component
+//But we need to handle that prop inside base component. Thats the only way we can add functionlity to child
+//
