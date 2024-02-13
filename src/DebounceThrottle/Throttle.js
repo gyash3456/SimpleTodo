@@ -1,28 +1,22 @@
-const throttle=(cb,delay=1000)=>{
-    let shouldWait=false;
-    let waitingArg=null;
-    const timeoutfunc=()=>setTimeout(()=>{
-        if(waitingArg==null){
-            shouldWait=false;
-        }
-        else{
-            cb(waitingArg);
-            waitingArg=null;//for next case to stop if there is no more arg
-            setTimeout(timeoutfunc,delay);//extra call for ensuring
-
-        }
-            
-        },delay)
-
-    return(...args)=>{
-        if(shouldWait){
-            waitingArg=args;
-            return
-        }
-        
-        cb(args);
-        shouldWait=true;
-        setTimeout(timeoutfunc,delay);
-        
+export const throttle = (cb, delay = 1000) => {
+  let shouldWait = false;
+  let waitingargs = null;
+  const handleWaitingArgs = () => {
+    if (waitingargs == null) {
+      shouldWait = false;
+    } else {
+      cb(waitingargs);
+      waitingargs = null;
+      setTimeout(handleWaitingArgs, delay);
     }
-}
+  };
+  return (...args) => {
+    if (shouldWait) {
+      waitingargs = args;
+      return;
+    }
+    cb(args);
+    shouldWait = true;
+    setTimeout(handleWaitingArgs, delay);
+  };
+};
