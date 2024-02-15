@@ -10,6 +10,7 @@ import { Eventbubbling } from "./EventBubbling/Eventbubbling";
 import { HOC } from "./HigherOrderComponent/HOC";
 import OriginalComponent from "./HigherOrderComponent/OriginalComponent";
 import TodoApp from "./TodoApp/TodoApp";
+import TimerApp from "./TimerApp";
 
 function App() {
     const Abc = HOC(OriginalComponent);
@@ -23,7 +24,8 @@ function App() {
             {/* <InfiniteScroll /> */}
             {/* <Eventbubbling /> */}
             {/* <Abc value={5}></Abc> */}
-            <TodoApp />
+            {/* <TodoApp /> */}
+            <TimerApp />
         </div>
     );
 }
