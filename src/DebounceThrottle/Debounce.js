@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { useState, useRef, useMemo } from "react";
 import { useDebounce } from "./useDebounce";
+import { throttle } from "./Throttle";
 
 export const Debounce = () => {
   const [text, setText] = useState("");
@@ -13,7 +14,7 @@ export const Debounce = () => {
     console.log("you have executed");
   };
   const updateDebouncedText = useMemo(() => {
-    return debounce(handleChange);
+    return throttle(handleChange, 1000);
   }, []);
 
   const handleChangeInput = (e) => {
