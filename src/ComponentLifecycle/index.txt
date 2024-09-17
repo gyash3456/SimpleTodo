@@ -1,0 +1,9 @@
+What is the order of execution of code in a parent child relationship of code in react.
+1) constructor // useState variables of parent
+2) static getDerivedStateFromProps of parent
+3) render method//all the functions that are not useEffect and html
+Since render method of parent contains child the same lifecycle is followed for child
+4)constructor// useState of child
+5) render of child// all the functions that are not useEffect and html
+6) component did mount of child //useEffect
+7) componendt did mount of parent //useEffect

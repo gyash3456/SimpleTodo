@@ -1,0 +1,14 @@
+How does virtual dom work in React?
+Basically React make virtual dom in memory which is similar to actual dom. Since it is in memory as an
+executable funtion. Changes in it are extremely fast.
+Earlier changes in actual dom were expensive and any change in actual dom leads to re-render all the 
+children of the nodes in the dom tree.
+Now when there is change in state and due to which there is change in UI, react creates a new dom due to 
+state change. Now react compares virtual dom, with new state virtual dom using diffing algorithm
+and uses key to identify changes in diffing algo. After identifying changes it updates only the necessary 
+part of actual dom saving the expensive changes in all the nodes which makes it really fast.
+
+Mount/ update/ Unmount
+mount- till the components render on screen (empty array)
+update-when user is interacting with screen (dependency array)
+unmount-when component disappear from the screen.(return statement)

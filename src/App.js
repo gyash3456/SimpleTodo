@@ -12,6 +12,8 @@ import OriginalComponent from "./HigherOrderComponent/OriginalComponent";
 import TodoApp from "./TodoApp/TodoApp";
 import TimerApp from "./TimerApp";
 import TicTacToe from "./TicTacToe/TicTacToe";
+import Greeting from "./scalerReact/exercise/Greeting";
+import { Hooks } from "./scalerReact/class4/Hooks.jsx";
 
 function App() {
   const Abc = HOC(OriginalComponent);
@@ -20,14 +22,18 @@ function App() {
       {/* <BasicCounter></BasicCounter>
             <Todo1Creater></Todo1Creater>
             <Memo></Memo> */}
-      <Debounce />
+      {/* <Debounce />
+       */}
       {/* <Back/> */}
       {/* <InfiniteScroll /> */}
       {/* <Eventbubbling /> */}
       {/* <Abc value={5}></Abc> */}
       {/* <TodoApp /> */}
       {/* <TimerApp /> */}
-      {/* <TicTacToe /> */}
+      {/* <TicTacToe />    */}
+      {/* <Greeting name="Jasbir" age="35" occupation="developer" />
+       */}
+      <Hooks />
     </div>
   );
 }
