@@ -14,6 +14,8 @@ import TimerApp from "./TimerApp";
 import TicTacToe from "./TicTacToe/TicTacToe";
 import Greeting from "./scalerReact/exercise/Greeting";
 import { Hooks } from "./scalerReact/class4/Hooks.jsx";
+import CounterRedux from "./redux/component/CounterRedux.jsx";
+import CartComponent from "./redux/Cart/CartComponent.js";
 
 function App() {
   const Abc = HOC(OriginalComponent);
@@ -33,7 +35,9 @@ function App() {
       {/* <TicTacToe />    */}
       {/* <Greeting name="Jasbir" age="35" occupation="developer" />
        */}
-      <Hooks />
+      {/* <CounterRedux />
+      <Hooks /> */}
+      <CartComponent />
     </div>
   );
 }

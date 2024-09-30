@@ -1,0 +1,129 @@
+How does React effectively do DOM manipulation?
+React uses a process called Reconciliation. It compares the in-memory virtual dom
+with actual dom and determine what has changed. This process is called Reconciliation.
+For reconciliation it uses diffing algorithm.
+What is diffing algorithm
+1) Check element types if same then check child elements, if not then make 
+a new subtree.
+2) Then check props and child nodes and their attributes if some has changed.
+3) Then use key to check when any of the children is modified.
+4) If key is not specified React uses index of the element as default key
+5) Then it diffs Text Node and component
+
+What is batching?
+Batching is the process by which React groups multiple state updates into a single re-render to optimize performance.
+In event handlers and lifecycle methods, React automatically batches updates.
+Before React 18, asynchronous updates (like in setTimeout, Promise) were not batched, leading to multiple re-renders.
+React 18 introduced automatic batching for all types of updates, including asynchronous ones.
+Tools like flushSync can force an immediate update when necessary.
+Batching improves performance by minimizing the number of times the DOM is updated, ensuring the UI remains responsive and efficient.
+const handleClick = () => {
+    // These updates will be batched together
+    setCount(count + 1); // React won't re-render here
+    setMessage("Count updated!"); // React won't re-render here either
+  };
+In the above example, both setCount() and setMessage() are called sequentially, 
+but React will only trigger one re-render after both updates have been made.
+
+Before React 18,batching were not done for asynchronous calls .
+
+setTimeout(() => {
+  setState1(newState1); // Causes one re-render
+  setState2(newState2); // Causes another re-render
+}, 1000);
+
+After react 18 it is batched automatically
+
+We can use forced batching.
+
+function handleClick() {
+  flushSync(() => {
+    setState1(newState1); // Forces an immediate update
+  });
+  // Further updates will be batched
+  setState2(newState2); 
+}
+
+Why do we need custom hooks
+For code reusability requiring states and already defined hooks
+For using a code global code that can be utilised at various position,
+abtracting complex logic at a single place to be reutilised.Eg fetching of data
+using custom hook which provides isLoading state, value and error states.
+
+What is the key difference betwee useMemo and useCallback
+useMemo is used to memoise the result of function after running that function for 
+a particular input, so that you don't have to run the same function for same
+input value.
+
+useCallback is used to memoise the function itself which will run again for a 
+new value and also its reference will not change until the state used inside the
+dependency array changes.
+
+redux toolkit
+1) First of all create a store and pass it as a prop to provider in index.js
+  <Provider store={store}>
+    <App />
+  </Provider>
+2) We can create a store using configure store which takes an object as a parameter
+which contains a mapping of stateName and coresponding sliceName.reducer
+const store = configureStore({
+  reducer: {
+    counterState: counterSlice.reducer,
+    cartState: cartSlice.reducer,
+  },
+});
+3) How to create a slice?
+We can create it by using createSlice which take an object as a paramter and
+keys as name, initialState, reducers,
+
+const cartSlice = createSlice({
+  name: "cartSlice",
+  initialState: {
+    cartItems: [],
+    cartTotal: 0,
+  },
+  reducers: {
+    addToCart: (state, data) => {
+      const item = data.payload;
+      const itemIndex = state.cartItems.findIndex((element) => {
+        return element.id === item.id;
+      });
+      if (itemIndex === -1) {
+        const newItem = { ...item, quantity: 1 };
+        state.cartItems.push(newItem);
+      } else {
+        let cartItem = state.cartItems[itemIndex];
+        cartItem = { ...cartItem, quantity: cartItem.quantity + 1 };
+        state.cartItems[itemIndex] = cartItem;
+      }
+      let sum = 0;
+
+      state.cartTotal = state.cartTotal + item.price;
+    },
+    applyCoupon: (state, data) => {
+      state.cartTotal =
+        state.cartTotal - data.payload.discount * state.cartTotal;
+    },
+  },
+});
+4) You don't need to define actions. They are provided as reducer name in slice.actions.
+const { applyCoupon } = cartSlice.actions;
+5)Now how to use the state and update the state.
+We use the state by using useSelector which provides a callback and provide store as a 
+parameter of that callback. We can extract the particular state defined in our store
+at the time of creating configureStore.
+const { cartItems, cartTotal } = useSelector((store) => store.cartState);
+cartItems ,cartTotal are states defined in initial state of our slice.
+
+We update the state using dispatch function of useDispatch.
+dispatch takes a function/action which needs to be called with object.
+the object will be provided to reducer function as data.payload so that we can 
+use the payload in reducer.
+
+const dispatch = useDispatch();
+<button
+  onClick={() => {
+            dispatch(applyCoupon({ discount: 0.2 }));
+          }}
+>Apply Coupon</button>
+
