@@ -171,3 +171,25 @@ const { status, dynamicData } = useSelector((store) => store.cartState);
   useEffect(() => {
     dispatch(getData());
   }, []);
+
+We always use State property from store not name:"", Name is only use for reference
+configureStore key is used to fetch state from state.
+
+const store = configureStore({
+  reducer: {
+    counterState: counterSlice.reducer,
+    cartState: cartSlice.reducer,
+  },
+});
+
+const { status, dynamicData } = useApi(getData, "cartState");
+
+
+export const useApi = (thunkAsyncFunction, selector) => {
+  const dispatch = useDispatch();
+  const { status, dynamicData } = useSelector((store) => store[selector]);
+  useEffect(() => {
+    dispatch(thunkAsyncFunction());
+  }, []);
+  return { status, dynamicData };
+};

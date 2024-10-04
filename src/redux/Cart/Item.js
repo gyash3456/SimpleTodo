@@ -5,14 +5,16 @@ import cartSlice from "./cartSlice";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "./cartSlice";
+import { useApi } from "./hooks/useApi";
 const { addToCart } = cartSlice.actions;
 
 const Item = ({ name, price, id }) => {
-  const { status, dynamicData } = useSelector((store) => store.cartState);
+  // const { status, dynamicData } = useSelector((store) => store.cartState);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getData());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getData());
+  // }, []);
+  const { status, dynamicData } = useApi(getData, "cartState");
   return (
     <div>
       name: {name} price:{price}
