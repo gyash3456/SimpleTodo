@@ -16,6 +16,7 @@ import Greeting from "./scalerReact/exercise/Greeting";
 import { Hooks } from "./scalerReact/class4/Hooks.jsx";
 import CounterRedux from "./redux/component/CounterRedux.jsx";
 import CartComponent from "./redux/Cart/CartComponent.js";
+import ReverseCounter from "./ReverseCounter/index.js";
 
 function App() {
   const Abc = HOC(OriginalComponent);
@@ -37,7 +38,8 @@ function App() {
        */}
       {/* <CounterRedux />
       <Hooks /> */}
-      <CartComponent />
+      {/* <CartComponent /> */}
+      {<ReverseCounter />}
     </div>
   );
 }
